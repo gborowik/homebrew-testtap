@@ -7,7 +7,7 @@ class Testscript < Formula
 
   def install
 	#bin.install "testscript"
-  pip_install("https://github.com/golemfactory/golem/wiki/wheels/sip-4.19-cp27-cp27m-macosx_10_12_x86_64.whl")
+  pip_install((url "https://github.com/golemfactory/golem/wiki/wheels/sip-4.19-cp27-cp27m-macosx_10_12_x86_64.whl"))
   end
 
 end
