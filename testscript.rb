@@ -1,3 +1,4 @@
+require '/usr/local/Homebrew/Library/Homebrew/language/python'
 
 class Testscript < Formula
   desc ""
@@ -19,7 +20,11 @@ class Testscript < Formula
 
     #exec 'pwd'
     #%x(sudo pip install "https://github.com/golemfactory/golem/wiki/wheels/sip-4.19-cp27-cp27m-macosx_10_12_x86_64.whl")
-    system("pip install 'https://github.com/golemfactory/golem/wiki/wheels/sip-4.19-cp27-cp27m-macosx_10_12_x86_64.whl'")
+    #system("python get-pip.py")
+    #system("pip install -U pip")
+    #system("pip install 'https://github.com/golemfactory/golem/wiki/wheels/sip-4.19-cp27-cp27m-macosx_10_12_x86_64.whl'")
+
+    Language::Python::Virtualenv::Virtualenv.pip_install("sip")
   end
 
 end
