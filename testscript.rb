@@ -1,3 +1,4 @@
+# Specify wheel resource's name as it is
 class WheelCurlDownloadStrategy < CurlDownloadStrategy
   def initialize(name, resource)
     super
@@ -5,6 +6,8 @@ class WheelCurlDownloadStrategy < CurlDownloadStrategy
   end
 end
 
+# Use WheelCurlDownloadStrategy for download
+# and use proper name of wheel resource (from url)
 class WheelResource < Resource
   def downloader
     download_strategy = WheelCurlDownloadStrategy
@@ -24,17 +27,45 @@ class Testscript < Formula
     sha256 '65e8670bf1f72c54a1cdc0a4756c42951530f9bce7bac7ac5d2df99a727f37c4'
   end
 
+  resource 'PyQt5', WheelResource do
+    url 'https://github.com/golemfactory/golem/wiki/wheels/PyQt5-5.7.1-cp27-cp27m-macosx_10_12_x86_64.whl'
+    sha256 '1a5ed4c81a53607731aee5a42999ec142ad8ab0fb7f9869dc0d1b728221ab182'
+  end
+
+  depends_on 'docker-machine'
+  depends_on 'xhyve'
+  depends_on 'docker-machine-driver-xhyve'
+  depends_on 'https://gist.github.com/shazow/c71c652409015479a7e6/raw/secp256k1.rb'
+  depends_on 'ethereum/ethereum/ethereum'
+  depends_on 'ipfs'
+  depends_on 'openexr'
+
+
   def install
 
+    # download wheel resources
+    # check sha256
+    # and pip install from cached location
     res = resource('sip')
     res.stage do
       do_install(res.downloader.cached_location)
     end
 
-    bin.install "testscript"
+    res = resource('PyQt5')
+    res.stage do
+      do_install(res.downloader.cached_location)
+    end
+
+
+    #todo
+    
+    #do_install('pip-resource')
+
+    #bin.install "testscript"
 
   end
 
+  # pip install wheel resource or array of wheel resources (verbose)
   def do_install(targets)
     targets = [targets] unless targets.is_a? Array
     system "#{HOMEBREW_PREFIX}/bin/pip",
@@ -42,5 +73,5 @@ class Testscript < Formula
            '-v',
            *targets
   end
-  
+
 end
