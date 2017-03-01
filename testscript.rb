@@ -39,4 +39,3 @@ class Testscript < Formula
   end
 
 end
-
