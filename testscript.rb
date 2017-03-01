@@ -25,17 +25,22 @@ class Testscript < Formula
   end
 
   def install
-    resource('sip').stage do
-      do_install(resource('sip').url)
+
+    res = resource('sip')
+    res.stage do
+      do_install(res.downloader.cached_location)
     end
+
+    bin.install "testscript"
+
   end
 
   def do_install(targets)
     targets = [targets] unless targets.is_a? Array
-    system '/usr/local/bin/pip',
+    system "#{HOMEBREW_PREFIX}/bin/pip",
            'install',
            '-v',
            *targets
   end
-
+  
 end
