@@ -21,6 +21,16 @@ class Testscript < Formula
   url 'https://github.com/gborowik/testscript/archive/v1.0.0.tar.gz'
   sha256 'a2cd0df31388b97b9474ffd527e4ae280e9c6da2dafcc1d6f1b0cbdbff119c81'
 
+  depends_on 'python'
+  depends_on 'qt@5.7'
+  depends_on 'docker-machine'
+  depends_on 'xhyve'
+  depends_on 'docker-machine-driver-xhyve'
+  depends_on 'https://gist.github.com/shazow/c71c652409015479a7e6/raw/secp256k1.rb'
+  depends_on 'ethereum/ethereum/ethereum'
+  depends_on 'ipfs'
+  depends_on 'openexr'
+
 
   resource 'sip', WheelResource do
     url 'https://github.com/golemfactory/golem/wiki/wheels/sip-4.19-cp27-cp27m-macosx_10_12_x86_64.whl'
@@ -31,14 +41,6 @@ class Testscript < Formula
     url 'https://github.com/golemfactory/golem/wiki/wheels/PyQt5-5.7.1-cp27-cp27m-macosx_10_12_x86_64.whl'
     sha256 '1a5ed4c81a53607731aee5a42999ec142ad8ab0fb7f9869dc0d1b728221ab182'
   end
-
-  depends_on 'docker-machine'
-  depends_on 'xhyve'
-  depends_on 'docker-machine-driver-xhyve'
-  depends_on 'https://gist.github.com/shazow/c71c652409015479a7e6/raw/secp256k1.rb'
-  depends_on 'ethereum/ethereum/ethereum'
-  depends_on 'ipfs'
-  depends_on 'openexr'
 
 
   def install
@@ -58,7 +60,7 @@ class Testscript < Formula
 
 
     #todo
-    
+
     #do_install('pip-resource')
 
     #bin.install "testscript"
